@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bjsp1eywsjfap"]
+
+[ext_resource type="Material" uid="uid://cfxr83kx2q0b" path="res://Textures/Materials/LogMaterialRes.tres" id="1_ypm4y"]
+[ext_resource type="Script" uid="uid://by1j1ms4y1a44" path="res://Scripts/StoryScripts/playerMovement.gd" id="2_il0td"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7dm0k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
+vertex_color_is_srgb = true
+albedo_color = Color(0.13108358, 0.7353249, 0.548247, 1)
+
+[node name="Main" type="Node3D" unique_id=504678244]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2027381114]
+environment = SubResource("Environment_0xm2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1391043712]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 24.9, 0)
+shadow_enabled = true
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=469702883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4500002, 0, 0.050000213)
+use_collision = true
+size = Vector3(51.4, 1, 51.4)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor" unique_id=2099578123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.500001, 2.9500005, -0.6499996)
+size = Vector3(1, 7.5, 36.5)
+material = ExtResource("1_ypm4y")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Floor" unique_id=1485266694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.800001, 3.1000009, -0.6999986)
+size = Vector3(1, 7.5, 36.7)
+material = ExtResource("1_ypm4y")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Floor" unique_id=1183024447]
+transform = Transform3D(1, 0, 0, 0, 48.420025, 0, 0, 0, 1, 0.40000033, 1.951274, 17.150002)
+size = Vector3(27.4, 0.2, 1)
+material = ExtResource("1_ypm4y")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Floor" unique_id=604192976]
+transform = Transform3D(1, 0, 0, 0, 6.95845, 0, 0, 0, 1, 0.30000055, 3.3249297, -18.550001)
+size = Vector3(27.2, 1, 1)
+material = ExtResource("1_ypm4y")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=724034688]
+script = ExtResource("2_il0td")
+moveSpeed = 0.1
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1920832581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5000002, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1117082891]
+shape = SubResource("CapsuleShape3D_0xm2m")
+
+[node name="Mesh" type="MeshInstance3D" parent="Player" unique_id=849547836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1.7, 0)
+mesh = SubResource("CapsuleMesh_7dm0k")
+surface_material_override/0 = SubResource("StandardMaterial3D_7dm0k")
+
+[node name="RayCast3D" type="RayCast3D" parent="Player" unique_id=1097631141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+target_position = Vector3(0, 0, -2)

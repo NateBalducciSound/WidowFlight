@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cfxr83kx2q0b"]
+
+[ext_resource type="Texture2D" uid="uid://dspn4qp38w1pc" path="res://Textures/LogHouseWalls.png" id="1_qm3t2"]
+
+[resource]
+albedo_texture = ExtResource("1_qm3t2")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_scale = Vector3(-3.26, -3.26, -3.26)

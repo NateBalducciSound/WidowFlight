@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ddsxpbj7lsmxm"]
+
+[ext_resource type="Script" uid="uid://d3nb2dtfqpqld" path="res://Scenes/BoardGameplay/boardManager.gd" id="1_an146"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eke3n"]
+albedo_color = Color(0.04285582, 0.17450303, 0.1074793, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eke3n"]
+size = Vector3(14, 0.1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eke3n"]
+
+[node name="BaseBoard" type="Node3D" unique_id=592251823]
+script = ExtResource("1_an146")
+tile_size = 2.3
+spacing = 0.23
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1263768828]
+transform = Transform3D(-4.1075268e-08, -0.76604444, 0.64278764, -1.4950174e-08, 0.64278764, 0.76604444, -1, 2.185569e-08, -3.7855173e-08, 7.4999995, 5.7999997, 0)
+current = true
+
+[node name="Tiles" type="Node3D" parent="." unique_id=1770167530]
+
+[node name="Pieces" type="Node3D" parent="." unique_id=1663050440]
+
+[node name="Terrain" type="Node3D" parent="." unique_id=252364011]
+
+[node name="Markers" type="Node3D" parent="." unique_id=1190540182]
+
+[node name="GridRoot" type="MeshInstance3D" parent="." unique_id=1154967904]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_eke3n")
+mesh = SubResource("BoxMesh_eke3n")
+
+[node name="Area3D" type="Area3D" parent="GridRoot" unique_id=267250182]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridRoot/Area3D" unique_id=871315286]
+shape = SubResource("BoxShape3D_eke3n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1739641912]
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=1806172523]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Execute"
+
+[node name="Lights" type="Node3D" parent="." unique_id=983807637]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights" unique_id=1583375447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90000004, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=1479279465]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.5, 1.2)
+light_energy = 0.66
